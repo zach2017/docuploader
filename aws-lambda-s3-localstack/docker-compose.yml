@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    environment:
+      - SERVICES=s3,lambda
+      - DEBUG=1
+      - AWS_DEFAULT_REGION=us-east-1
+      - LAMBDA_EXECUTOR=docker-reuse
+    ports:
+      - "4566:4566"
+    volumes:
+      - "./init-scripts:/etc/localstack/init/ready.d"
+      - "./lambda:/opt/lambda"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  api:
+    build: ./app
+    container_name: file-upload-api
+    environment:
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_REGION=us-east-1
+      - AWS_ENDPOINT_URL=http://localstack:4566
+      - UPLOAD_LAMBDA_NAME=file-upload-lambda
+    depends_on:
+      - localstack
+    ports:
+      - "8000:8000"

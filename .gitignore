@@ -24,3 +24,4 @@ hs_err_pid*
 replay_pid*
 java-file-upload/src/main/java/com/example/demo/web/FileUploadController.java
 java-file-upload/uploads/*
+java-file-upload/target/

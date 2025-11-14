@@ -1,0 +1,4 @@
+com\example\demo\config\StorageProperties.class
+com\example\demo\FileUploadApplication.class
+com\example\demo\service\FileStorageService.class
+com\example\demo\web\FileUploadController.class

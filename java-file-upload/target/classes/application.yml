@@ -1,0 +1,12 @@
+server:
+  port: 8080
+
+storage:
+  base-path: "./uploads"
+  key-info: "my-secret-key"
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 20MB
